@@ -6,6 +6,10 @@
 
 可以先试听一下：[语音合成的效果](https://github.com/georgezhao2010/azure_cognitive_speech/files/6774349/zh-cn_667429d893_azure_cognitive_speech.zip)
 
+# 为什么会有这个集成
+是的，Home Assistant自己就包含了Microsoft TTS组件，但组件支持的功能就是普通的TTS。而该组件通过Options可以额外指定由谁说话(voice)，还可以指定说话的风格、情绪(style)，甚至可以让一个女生模仿一个老年人说话(roleplay)。而实现以上功能，不仅不需要修改`configuration.yaml`文件，并重启Home Assistant，而是在调用TTS服务时通过Options实现，使得在家庭应用时适合不同的场景。
+
+
 # 使用之前
 - 使用该组件，首先需要一个[Microsoft Azure](https://azure.microsoft.com/)账号，如果你没有，请先注册一个。
 - 录Azure后，转到[Azure主页](https://portal.azure.com/#home)
@@ -28,7 +32,7 @@ tts:
     region: "eastasia"                         # 这里是你申请的Azure Cognitive Speech语音服务的区域        
     default_voice: "Xiaoxiao"                  # 这里是默认使用的语音，Xiaoxiao是一个中文语音的模型名称
 ```
-更多语音，请参照[这里](https://github.com/georgezhao2010/azure_cognitive_speech/blob/main/voice_list.json)，其中的“DisplayName”，就是可用的语音名，中文相关语音，都在文件后部。其中“VoiceType”为“Neural”的语音，都是神经网络训练后的语音模型，具有极自然的合成质量。
+更多语音，请参照[这里](https://github.com/georgezhao2010/azure_cognitive_speech/blob/main/voice_list.json)，其中的“DisplayName”，就是可用的语音名，“VoiceType”为“Neural”的语音，都是神经网络训练后的语音模型，具有极自然的合成质量。中文相关语音，都在文件后部。
 
 ## 进阶配置
 要更好地使用Home Assistant中的TTS服务，可以在配置项中增加以下内容：
