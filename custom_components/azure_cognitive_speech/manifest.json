@@ -1,0 +1,12 @@
+{
+  "domain": "azure_cognitive_speech",
+  "name": "Azure Cognitive Speech",
+  "version": "v0.0.2",
+  "config_flow": false,
+  "documentation": "https://github.com/georgezhao2010/azure_cognitive_speech",
+  "issue_tracker": "https://github.com/georgezhao2010/azure_cognitive_speech/issue",
+  "requirements": [],
+  "dependencies": [],
+  "iot_class": "cloud_push",
+  "codeowners": ["@georgezhao2010"]
+}
