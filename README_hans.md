@@ -28,7 +28,7 @@ tts:
     region: "eastasia"                         # 这里是你申请的Azure Cognitive Speech语音服务的区域        
     default_voice: "Xiaoxiao"                  # 这里是默认使用的语音，Xiaoxiao是一个中文语音的模型名称
 ```
-更多语音，请参照[这里](https://github.com/georgezhao2010/azure_cognitive_speech/blob/main/voice_list.json)，其中的“DisplayName”，就是可用的语音名，中文相关语音，都在文件后部。
+更多语音，请参照[这里](https://github.com/georgezhao2010/azure_cognitive_speech/blob/main/voice_list.json)，其中的“DisplayName”，就是可用的语音名，中文相关语音，都在文件后部。其中“VoiceType”为“Neural”的语音，都是神经网络训练后的语音模型，具有极自然的合成质量。
 
 ## 进阶配置
 要更好地使用Home Assistant中的TTS服务，可以在配置项中增加以下内容：
