@@ -4,6 +4,8 @@
 
 [English](https://github.com/georgezhao2010/azure_cognitive_speech/blob/main/README.md) | 简体中文
 
+可以先试听一下：[语音合成的效果](https://github.com/georgezhao2010/azure_cognitive_speech/files/6774349/zh-cn_667429d893_azure_cognitive_speech.zip)，可下载试听。
+
 # 使用之前
 - 使用该组件，首先需要一个[Microsoft Azure](https://azure.microsoft.com/)账号，如果你没有，请先注册一个。
 - 录Azure后，转到[Azure主页](https://portal.azure.com/#home)
@@ -15,7 +17,6 @@
 
 # 安装
 使用HACS安装自定义存储库，或者从Latest Release下载最新的发行版，并将其中的`custom_components/azure_cognitive_speech`目录下所有文件手动复制到你的Home Assistant下的`<Home Assistant config folder>/custom_components/cliamte_ewelink`目录中，然后重启Home Assistant。
-[zh-cn_667429d893_azure_cognitive_speech.zip](https://github.com/georgezhao2010/azure_cognitive_speech/files/6774348/zh-cn_667429d893_azure_cognitive_speech.zip)
 
 # 配置
 ## 基础配置
@@ -42,7 +43,7 @@ tts:
     time_memory: 300                           # 内存中缓存时间
 ```
 
-## 使用
+# 使用
 Microsoft Azure Cognitive Speech服务除了一般的TTS，还可以为语音加入风格(Style)和角色模仿(Role)，比如对于“Xiaoxiao”这个语音来说, "sad"风格与"newscast"风格具有巨大的区别，同时还可以让Xiaoxiao模仿诸如老年人说话。
 以上功能通过语音识别时的选项(Option)功能实现，可用的选项包括
 - voice 选择的语音，可以选择默认语音之外的语音发音
@@ -52,7 +53,7 @@ Microsoft Azure Cognitive Speech服务除了一般的TTS，还可以为语音加
 
 关于可用的voice及其可用哪些style或者role，仍旧是参照[这里](https://github.com/georgezhao2010/azure_cognitive_speech/blob/main/voice_list.json)
 
-## 实例
+# 实例
 使用如下Options，播放文字“在北京时间今天凌晨3点举行的一场欧洲杯半决赛中，意大利队与西班牙队在120分钟内站成1：1平。在点球大战中，意大利队以4：2（总比分5：3）击败西班牙队，挺进决赛。”
 ```
 voice: Xiaoxiao
@@ -60,4 +61,3 @@ speed: 1
 style: newscast
 ```
 [语音合成的效果](https://github.com/georgezhao2010/azure_cognitive_speech/files/6774349/zh-cn_667429d893_azure_cognitive_speech.zip)，可下载试听。
-        
