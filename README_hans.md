@@ -4,7 +4,7 @@
 
 [English](https://github.com/georgezhao2010/azure_cognitive_speech/blob/main/README.md) | 简体中文
 
-可以先试听一下：[语音合成的效果](https://github.com/georgezhao2010/azure_cognitive_speech/files/6774349/zh-cn_667429d893_azure_cognitive_speech.zip)，可下载试听。
+可以先试听一下：[语音合成的效果](https://github.com/georgezhao2010/azure_cognitive_speech/files/6774349/zh-cn_667429d893_azure_cognitive_speech.zip)
 
 # 使用之前
 - 使用该组件，首先需要一个[Microsoft Azure](https://azure.microsoft.com/)账号，如果你没有，请先注册一个。
