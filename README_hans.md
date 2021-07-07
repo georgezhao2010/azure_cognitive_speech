@@ -8,6 +8,7 @@
 
 # 为什么会有这个集成
 是的，Home Assistant自己就包含了Microsoft TTS组件，但组件支持的功能就是普通的TTS。而该组件通过Options可以额外指定由谁说话(voice)，还可以指定说话的风格、情绪(style)，甚至可以让一个女生模仿一个老年人说话(roleplay)。而实现以上功能，不仅不需要修改`configuration.yaml`文件，并重启Home Assistant，而是在调用TTS服务时通过Options实现，使得在家庭应用时适合不同的场景。
+上边的试听mp3，是让Xiaoxiao使用了新闻主播的风格发声的，听起来似乎就来自于电视中的新闻画面。
 
 
 # 使用之前
