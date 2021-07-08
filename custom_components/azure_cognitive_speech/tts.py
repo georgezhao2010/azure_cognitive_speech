@@ -1,4 +1,3 @@
-"""Support for the Google speech service."""
 import logging
 import voluptuous as vol
 import homeassistant.helpers.config_validation as cv
@@ -23,7 +22,6 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 
 
 async def async_get_engine(hass, config, discovery_info=None):
-    """Set up Google speech component."""
     return CognitiveProvider(hass, config)
 
 
@@ -37,17 +35,14 @@ class CognitiveProvider(Provider):
 
     @property
     def default_language(self):
-        """Return the default language."""
         return DEFAULT_LANGUAGE
 
     @property
     def supported_languages(self):
-        """Return list of supported languages."""
         return SUPPORT_LANGUAGES
 
     @property
     def supported_options(self):
-        """Return a list of supported options like voice, emotionen."""
         return [OPT_VOICE, OPT_STYLE, OPT_ROLE, OPT_SPEED]
 
     @property

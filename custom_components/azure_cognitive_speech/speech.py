@@ -30,12 +30,12 @@ class CognitiveToken:
         return None
 
     def get_token(self):
-        if "outdate" in self._data and time.time() - self._data["outdate"] < TOKEN_OUTDATE:
+        if "outdate" in self._data and self._data["outdate"] < time.time():
             token = self._data["toekn"]
         else:
             token = self.refresh_token()
             if token is not None:
-                self._data["outdate"] = time.time()
+                self._data["outdate"] = time.time() + TOKEN_OUTDATE
                 self._data["toekn"] = token
         return token
 
