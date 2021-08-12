@@ -21,7 +21,7 @@
 - 点击该项资源，左侧的列表中，点击“资源管理”下的“密钥和终结点”，密钥和区域，终结点就会出现在屏幕上，记下以上信息，密钥共有两个，任意使用其中一个即可。
 
 # 安装
-使用HACS安装自定义存储库，或者从[Latest Release](https://github.com/georgezhao2010/azure_cognitive_speech/releases/latest)下载最新的发行版，并将其中的`custom_components/azure_cognitive_speech`目录下所有文件手动复制到你的Home Assistant下的`<Home Assistant config folder>/custom_components/cliamte_ewelink`目录中，然后重启Home Assistant。
+使用HACS安装自定义存储库，或者从[Latest Release](https://github.com/georgezhao2010/azure_cognitive_speech/releases/latest)下载最新的发行版，并将其中的`custom_components/azure_cognitive_speech`目录下所有文件手动复制到你的Home Assistant下的`<Home Assistant config folder>/custom_components/azure_cognitive_speech`目录中，然后重启Home Assistant。
 
 # 配置
 ## 基础配置
