@@ -21,12 +21,15 @@ class CognitiveToken:
 
     def refresh_token(self):
         headers = {"Ocp-Apim-Subscription-Key": self._apikey}
-        r = requests.post(ENDPOINT_URI.format(self._region), headers=headers)
-        if r.status_code == 200:
-            _LOGGER.debug(f"Refresh token successful")
-            return r.text
-        else:
-            _LOGGER.debug(f"Refresh token failed, reason: {r.reason}")
+        try:
+            r = requests.post(ENDPOINT_URI.format(self._region), headers=headers, timeout=10)
+            if r.status_code == 200:
+                _LOGGER.debug(f"Refresh token successful")
+                return r.text
+            else:
+                _LOGGER.debug(f"Refresh token failed, reason: {r.reason}")
+        except Exception as e:
+            _LOGGER.debug(f"Refresh token failed, reason: {e}")
         return None
 
     def get_token(self):
@@ -95,10 +98,13 @@ class CognitiveSpeech:
             "content-type": "application/ssml+xml",
             "x-microsoft-outputformat": "audio-16khz-32kbitrate-mono-mp3"
         }
-
-        r = requests.post(TTS_URL.format(self._region), headers=headers, data=ssml.encode('utf-8'))
-        if r.status_code == 200:
-            return r.content
-        else:
-            _LOGGER.debug(f"Text to speech failed, reason: {r.reason}")
+        try:
+            r = requests.post(TTS_URL.format(self._region), headers=headers, data=ssml.encode('utf-8'), timeout=10)
+            if r.status_code == 200:
+                return r.content
+            else:
+                _LOGGER.debug(f"Text to speech failed, reason: {r.reason}")
+        except Exception as e:
+            _LOGGER.debug(f"Text to speech failed, reason: {e}")
+            pass
         return None
