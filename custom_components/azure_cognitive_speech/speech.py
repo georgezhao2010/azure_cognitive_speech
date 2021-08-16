@@ -13,11 +13,9 @@ class CognitiveToken:
     def __init__(self, hass, region, apikey):
         if DOMAIN not in hass.data:
             hass.data[DOMAIN] = {}
-        if apikey not in hass.data[DOMAIN]:
-            hass.data[DOMAIN][apikey] = {}
-        self._data = hass.data[DOMAIN][apikey]
         self._region = region
         self._apikey = apikey
+        self._hass = hass
 
     def refresh_token(self):
         headers = {"Ocp-Apim-Subscription-Key": self._apikey}
@@ -27,19 +25,20 @@ class CognitiveToken:
                 _LOGGER.debug(f"Refresh token successful")
                 return r.text
             else:
-                _LOGGER.debug(f"Refresh token failed, reason: {r.reason}")
+                _LOGGER.error(f"Refresh token failed, reason: {r.reason}")
         except Exception as e:
-            _LOGGER.debug(f"Refresh token failed, reason: {e}")
+            _LOGGER.error(f"Refresh token failed, reason: {e}")
         return None
 
     def get_token(self):
-        if "outdate" in self._data and self._data["outdate"] < time.time():
-            token = self._data["toekn"]
+        time_now = time.time()
+        if "outdate" in self._hass.data[DOMAIN] and self._hass.data[DOMAIN]["outdate"] >= time_now:
+            token = self._hass.data[DOMAIN]["token"]
         else:
             token = self.refresh_token()
             if token is not None:
-                self._data["outdate"] = time.time() + TOKEN_OUTDATE
-                self._data["toekn"] = token
+                self._hass.data[DOMAIN]["outdate"] = time_now + TOKEN_OUTDATE
+                self._hass.data[DOMAIN]["token"] = token
         return token
 
 
@@ -92,19 +91,20 @@ class CognitiveSpeech:
 
     def speech(self, text, voice, speed=0, style=None, role=None):
         token = self._token.get_token()
-        ssml = self.ssml_gen(text, voice=voice, speed=speed, style=style, role=role)
-        headers = {
-            "authorization": f"Bearer {token}",
-            "content-type": "application/ssml+xml",
-            "x-microsoft-outputformat": "audio-16khz-32kbitrate-mono-mp3"
-        }
-        try:
-            r = requests.post(TTS_URL.format(self._region), headers=headers, data=ssml.encode('utf-8'), timeout=10)
-            if r.status_code == 200:
-                return r.content
-            else:
-                _LOGGER.debug(f"Text to speech failed, reason: {r.reason}")
-        except Exception as e:
-            _LOGGER.debug(f"Text to speech failed, reason: {e}")
-            pass
+        if token is not None:
+            ssml = self.ssml_gen(text, voice=voice, speed=speed, style=style, role=role)
+            headers = {
+                "authorization": f"Bearer {token}",
+                "content-type": "application/ssml+xml",
+                "x-microsoft-outputformat": "audio-16khz-32kbitrate-mono-mp3"
+            }
+            try:
+                r = requests.post(TTS_URL.format(self._region), headers=headers, data=ssml.encode('utf-8'), timeout=10)
+                if r.status_code == 200:
+                    return r.content
+                else:
+                    _LOGGER.error(f"Text to speech failed, reason: {r.reason}")
+            except Exception as e:
+                _LOGGER.error(f"Text to speech failed, reason: {e}")
+                pass
         return None
